@@ -6,8 +6,12 @@ const http = require('http'),
     port = 3000,
     app = express();
     const dishRouter = require('./routes/dishRouter');
+    const promoRouter = require('./routes/promoRouter');
+    const leaderRouter = require('./routes/leaderRouter');
 
-    app.use('/dishes', dishRouter);
+    app.use('/dishes', dishRouter)
+        .use('/promotions', promoRouter)
+        .use('/leaders', leaderRouter);
 
 const server = http.createServer(app);
     server.listen(port, hostname, () => {
