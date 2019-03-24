@@ -6,26 +6,23 @@ const mongoose = require('mongoose'),
 connect.then((db) =>{
     console.log('Connected correctly to server');
 
-    var newDish = Dishes({
+   Dishes.create({
         name: 'Uthappizza',
         description: 'Test'
+    })
+    .then((dish) => {
+        console.log(dish);
+
+        return Dishes.find({});
+    })
+    .then((dishes) => {
+         console.log(dishes);
+        return Dishes.remove({});
+    })
+    .then(() => {
+        return mongoose.connection.close();
+    })
+    .catch((err) => {
+        console.error(err);
     });
-
-    newDish.save()
-        .then((dish) => {
-            console.log(dish);
-
-            return Dishes.find({});
-        })
-        .then((dishes) => {
-            console.log(dishes);
-
-            return Dishes.remove({});
-        })
-        .then(() => {
-            return mongoose.connection.close();
-        })
-        .catch((err) => {
-            console.error(err);
-        });
 });
