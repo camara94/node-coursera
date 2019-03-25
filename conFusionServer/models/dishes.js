@@ -1,5 +1,6 @@
-const mongoose = require('mongoose'),
-    Currency = mongoose.Types.Currency,
+const mongoose = require('mongoose');
+require('mongoose-currency').loadType(mongoose);
+const   Currency = mongoose.Types.Currency;
     Schema = mongoose.Schema;
 
 var commentSchema = new Schema({
@@ -19,9 +20,9 @@ var commentSchema = new Schema({
     }
 },{
     timestamps: true
-}),
+});
 
-dishSchema = new Schema({
+const dishSchema = new Schema({
     name: {
         type: String,
         required: true,
@@ -48,13 +49,12 @@ dishSchema = new Schema({
         required: true,
         min: 0
     },
-    label: {
+    featured: {
         type: Boolean,
-        default: false
+        default:false
     },
-    comments: [commentSchema]
-},
-{
+    comments:[commentSchema]
+}, {
     timestamps: true
 });
 
