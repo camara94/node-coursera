@@ -155,7 +155,7 @@ dishRouter.route('/:dishId/comments/:commentId')
         if (dish != null && dish.comments.id(req.params.commentId) != null) {
             res.statusCode = 200;
             res.setHeader('Content-Type', 'application/json');
-            res.json(dish.comments.id(req.params.commentId));
+            res.json(dish.comments.author._id.equals(req.user._id);
         }
         else if (dish == null) {
             err = new Error('Dish ' + req.params.dishId + ' not found');
